@@ -1,0 +1,24 @@
+name: Pipeline Controle de Estoque
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validar-estoque:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar arquivos do sistema
+        uses: actions/checkout@v4
+
+      - name: Configurar ambiente Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Executar sistema de estoque
+        run: python estoque.py
+
+      - name: Executar teste do estoque
+        run: python teste_estoque.py
